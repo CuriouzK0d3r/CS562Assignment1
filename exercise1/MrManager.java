@@ -21,6 +21,9 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
+import org.xerial.snappy.Snappy;
+
+import org.apache.hadoop.conf.Configuration;
 
 public class MrManager extends Configured implements Tool {
 
@@ -31,14 +34,22 @@ public class MrManager extends Configured implements Tool {
 
 	// The run method configures and starts the MapReduce job1.
 	public int run(String[] args) throws Exception {
-		Job Job1 = Job.getInstance(getConf(), "wordcount");
+		Configuration conf = getConf();
+		conf.setBoolean("mapred.compress.map.output", true); 
+		conf.set("mapred.map.output.compression.codec","org.apache.hadoop.io.compress.SnappyCodec");
+		//conf.setOutputFormat(SequenceFileOutputFormat.class); 
+		//SequenceFileOutputFormat.setOutputCompressionType(conf, CompressionType.BLOCK);
+		//SequenceFileOutputFormat.setCompressOutput(conf, true); 
+		//conf.set("mapred.output.compression.codec","org.apache.hadoop.io.compress.SnappyCodec");
+		
+		Job Job1 = Job.getInstance(conf, "wordcount");
 		Job1.setJarByClass(this.getClass());
 		// Use TextInputFormat, the default unless Job1.setInputFormatClass is
 		// used
 		FileInputFormat.addInputPath(Job1, new Path(args[0]));
 		FileOutputFormat.setOutputPath(Job1, new Path(args[2]));
 		Job1.setMapperClass(CountMap.class);
-		// Job1.setCombinerClass(CountReduce.class);
+		Job1.setCombinerClass(CountReduce.class);
 		Job1.setReducerClass(CountReduce.class);
 		Job1.setOutputKeyClass(Text.class);
 		Job1.setOutputValueClass(IntWritable.class);
@@ -48,14 +59,14 @@ public class MrManager extends Configured implements Tool {
 			System.exit(1);
 		}
 
-		Job Job2 = Job.getInstance(getConf(), "stopwords analysis");
+		Job Job2 = Job.getInstance(conf, "stopwords analysis");
 		Job2.setJarByClass(this.getClass());
 		// Use TextInputFormat, the default unless Job1.setInputFormatClass is
 		// used
 		FileInputFormat.addInputPath(Job2, new Path(args[2]));
 		FileOutputFormat.setOutputPath(Job2, new Path(args[1]));
 		Job2.setMapperClass(StopwordsMap.class);
-		// Job2.setCombinerClass(StopwordsReduce.class);
+		Job2.setCombinerClass(StopwordsReduce.class);
 		Job2.setReducerClass(StopwordsReduce.class);
 		Job2.setOutputKeyClass(WordWritable.class);
 

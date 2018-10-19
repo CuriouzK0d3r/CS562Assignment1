@@ -1,4 +1,4 @@
-package excercise3;
+package exercise3;
 
 // Basic MapReduce utility classes
 import java.io.DataInput;

@@ -1,4 +1,4 @@
-username = vagrant
+username = cloudera
 
 all: run
 

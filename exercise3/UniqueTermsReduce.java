@@ -1,11 +1,11 @@
-package excercise3;
+package exercise3;
 
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.io.Serializable;
 
-import excercise3.DocumentWritable;
+import exercise3.DocumentWritable;
 
 import java.util.ArrayList;
 import java.util.HashMap;

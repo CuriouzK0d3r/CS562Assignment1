@@ -1,4 +1,4 @@
-package excercise3;
+package exercise3;
 
 // Basic Java file IO
 import java.io.BufferedReader;
@@ -21,7 +21,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import org.apache.hadoop.util.StringUtils;
 
-import excercise3.DocumentWritable;
+import exercise3.DocumentWritable;
 
 // Java classes for working with sets
 // File I/O

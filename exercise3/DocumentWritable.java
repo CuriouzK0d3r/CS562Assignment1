@@ -1,4 +1,4 @@
-package excercise3;
+package exercise3;
 
 import java.io.DataInput;
 import java.io.DataOutput;

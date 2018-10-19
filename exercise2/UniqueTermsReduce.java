@@ -1,4 +1,4 @@
-package excercise2;
+package exercise2;
 
 import java.io.IOException;
 import java.util.ArrayList;

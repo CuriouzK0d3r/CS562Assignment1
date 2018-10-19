@@ -1,4 +1,4 @@
-package excercise2;
+package  exercise2;
 
 // Basic MapReduce utility classes
 import org.apache.hadoop.conf.Configured;

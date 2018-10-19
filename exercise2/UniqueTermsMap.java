@@ -1,4 +1,4 @@
-package excercise2;
+package exercise2;
 
 // Basic Java file IO
 import java.io.BufferedReader;
@@ -64,7 +64,7 @@ public class UniqueTermsMap extends Mapper<LongWritable, Text, Text, Text> {
 	  String line = lineText.toString();
       line = line.toLowerCase();
 			Pattern p = Pattern.compile("[^a-zA-Z0-9]");
-			Pattern p = Pattern.compile("[0-9]+[a-zA-Z]*");
+			Pattern p2 = Pattern.compile("[0-9]+[a-zA-Z]*");
 
       //      line = line.replaceAll("[^A-Za-z0-9]", "");
       String fileName = ((FileSplit) context.getInputSplit()).getPath().getName();
@@ -72,7 +72,7 @@ public class UniqueTermsMap extends Mapper<LongWritable, Text, Text, Text> {
     //   line = line.replaceAll("[^A-Za-z0-9]", "");
       Text currentWord = new Text();
         for (String word : WORD_BOUNDARY.split(line)) {
-          if (word.isEmpty() || patternsToSkip.contains(word) || p.matcher(word).find()) {
+          if (word.isEmpty() || patternsToSkip.contains(word) || p2.matcher(word).find() ||  p.matcher(word).find()) {
             continue;
           }
           currentWord = new Text(word);

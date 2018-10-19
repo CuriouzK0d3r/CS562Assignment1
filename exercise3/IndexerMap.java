@@ -1,4 +1,4 @@
-package excercise3;
+package exercise3;
 
 // Basic Java file IO
 import java.io.BufferedReader;

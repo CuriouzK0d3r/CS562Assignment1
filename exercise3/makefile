@@ -1,5 +1,5 @@
 run: clean makedir upload compile_MrManager
-	hadoop jar complete.jar excercise3.MrManager /user/cloudera/stopwords/input /user/cloudera/stopwords/output /user/cloudera/stopwords/intrm /user/cloudera/stopwords/stopwords.csv
+	hadoop jar complete.jar exercise3.MrManager /user/cloudera/stopwords/input /user/cloudera/stopwords/output /user/cloudera/stopwords/intrm /user/cloudera/stopwords/stopwords.csv
 
 # Create the input directory.
 makedir:
