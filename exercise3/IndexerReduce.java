@@ -17,7 +17,6 @@ public class IndexerReduce extends Reducer<Text, Text, Text, Text> {
 			throws IOException, InterruptedException {
 		long cn = context.getCounter("org.apache.hadoop.mapred.Task$Counter", "REDUCE_OUTPUT_RECORDS").getValue();
 		
-		LOGGER.info("gamiese");
 		String docList = "";
 				
 		for (Text docText : docs) {

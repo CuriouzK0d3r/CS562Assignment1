@@ -71,7 +71,7 @@ public class MrManager extends Configured implements Tool {
 // The run method configures and starts the MapReduce Job1.
 
 	public int run(String[] args) throws Exception {
-		 Job Job1 = Job.getInstance(getConf(), "wordcount");
+		 Job Job1 = Job.getInstance(getConf(), "unique terms");
 		Job1.setJarByClass(this.getClass());
 		// Use TextInputFormat, the default unless Job1.setInputFormatClass is used
 		FileInputFormat.addInputPath(Job1, new Path(args[0]));
@@ -86,7 +86,7 @@ public class MrManager extends Configured implements Tool {
 			System.exit(1);
 		}
 //
-		Job Job2 = Job.getInstance(getConf(), "stopwords analysis");
+		Job Job2 = Job.getInstance(getConf(), "indexer");
 		Job2.setJarByClass(this.getClass());
 		// Use TextInputFormat, the default unless Job1.setInputFormatClass is used
 		FileInputFormat.addInputPath(Job2, new Path(args[2]));
